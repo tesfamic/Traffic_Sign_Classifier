@@ -66,13 +66,17 @@ Validation images
 
 #### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 > Three image preprocessing operations have been applied.
-As a first step, I decided to convert the images to grayscale for two reasons mentioned below. 
-1. To Reduce costs associated to computation. Grayscale image has a single channel where as color image has 3 channels. Therefore processing grayscale images reduces the computation by about a 1/3 (Less memory, less training time means lower overall cost).
-2. For this particula application, it seems that grayscale format provided better classification accuracy as demonstrated by [Sermanet and Yan](http://ieeexplore.ieee.org/document/6033589/). I believe that shape feature is more usefull than color feature for traffic signs.
+  * Conversion to grayscale image
+  * Histogram equalization
+  * Normalization 
+  
+> As a first step, I decided to convert the images to grayscale for two reasons mentioned below. 
+   1. To Reduce costs associated to computation. Grayscale image has a single channel where as color image has 3 channels. Therefore processing grayscale images reduces the computation by about a 1/3 (Less memory, less training time means lower overall cost).
+  2. For this particula application, it seems that grayscale format provided better classification accuracy as demonstrated by [Sermanet and Yan](http://ieeexplore.ieee.org/document/6033589/). I believe that shape feature is more usefull than color feature for traffic signs.
 
-As a second step, histogram equalization is applied to enhance the images in the dataset. This operation specially improves the contrast level of some of the pictures which are very dark or very bright.
+> As a second step, histogram equalization is applied to enhance the images in the dataset. This operation specially improves the contrast level of some of the pictures which are very dark or very bright.
 
-The last (mandatory operation) preprocessing is normalization. The images are normalized to get a pixel value in the range [-1, 1]. The formula recommended to use for normalization is (pixel - 128)/128. Normalization is very important for the CNN algorithm to converge quickly and to get better accuracy. This is because when the weights are re-evaluated for optimization, the amount of correction factor to be applied would be uniform. Without normalization, the algorithm has to apply different correction factors to minimize errors because of various values per pixel. Therefore, normalization helps the algorithm to converge quickly.
+> The last (mandatory operation) preprocessing is normalization. The images are normalized to get a pixel value in the range [-1, 1]. The formula recommended to use for normalization is (pixel - 128)/128. Normalization is very important for the CNN algorithm to converge quickly and to get better accuracy. This is because when the weights are re-evaluated for optimization, the amount of correction factor to be applied would be uniform. Without normalization, the algorithm has to apply different correction factors to minimize errors because of various values per pixel. Therefore, normalization helps the algorithm to converge quickly.
 
 Here are examples of traffic sign images before and after preprocessing (grayscaling followed by histogram equalization and normalization)
 
@@ -160,25 +164,15 @@ The model was able to correctly guess 8 of the 10 traffic signs, which gives an 
 
  | True image         | Predictions   |  Comment  |
  |:------------------:|:---------------------:|:---------:|
- | Children crossing  | 100% - Right-of-way at next intersection   	|  Incorrect |
- |                    | 0% - Beware of ice/snow | |
- |                    | 0% - Children crossing  | |
- | Road work    			| 100% - Road work 										| Correct |
- | Keep right					| 100% - Keep right						| Correct |
- |                    | 0% - Speed limit (30km/h) | |
- |                    | 0% - Wild animals crossing |   |
- | Pedestrians	      | 100% - Pedestrians					 				| Correct |
- |                    | 0% - Right-of-way at .. | |
- |                    | 0% - General caution  | |
- | Priority Road			|100% - Priority road      							| |
- | Right-of-way at next intersection |100% - Right-of-way at next intersection | Correct |
+ | Children crossing  | 100% - Right-of-way at ... <br/>  0% - Beware of ice/snow   <br/>	0% - Children crossing|  Incorrect |
+ | Road work    			| 100% - Road work 								| Correct |
+ | Keep right		 	| 100% - Keep right <br/>0% - Speed limit (30km/h <br/>	0% - Wild animals crossing		| Correct |
+ | Pedestrians	      | 100% - Pedestrians	<br/> 0% - Right-of-way at .. <br/>	0% - General caution			 				| Correct |
+ | Priority Road			|100% - Priority road     				| |
+ | Right-of-way at next intersection |100% - Right-of-way at ... | Correct |
  | Turn right ahead  | 100% Turn right ahead | Correct |
- | Stop | 99.6% - Stop  | Correct |
- |      | 0.23% - Speed limit (50km/h) | |
- |      | 0.07% - Yield  | |
- | Speed limit (30km/h) | 62.9% Speed limit (50km/h) | Incorrect |
- |                      | 36.4% Speed limit (30km/h) | |
- |                      | 0.61% Roundabout mandatory | |
+ | Stop | 99.6% - Stop <br/>0.23% - Speed limit (50km/h) <br/>0.07% - Yield | Correct |
+ | Speed limit (30km/h) | 62.9% Speed limit (50km/h) <br/> 36.4% Speed limit (30km/h) <br/> 0.61% Roundabout mandatory | Incorrect |
  | General caution  | 100% General caution | Correct |
 
 
