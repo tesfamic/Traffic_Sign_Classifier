@@ -18,7 +18,7 @@ The goals / steps of this project are the following:
 [image2]: ./examples/validation_images.png "Grayscaling"
 [image3]: ./examples/color_img.png "Color images"
 [image4]: ./examples/gray_images.png "Gray images"
-[image5]: ./examples/normalized_imgs.png "Normalized images"
+[image5]: ./examples/normalized_img.png "Normalized images"
 [image6]: ./examples/new_imgs.png "New test images"
 
 [image6]: ./examples/gray_images1.png "Random Noise"
@@ -69,6 +69,7 @@ Validation images
 As a first step, I decided to convert the images to grayscale for two reasons mentioned below. 
 1. To Reduce costs associated to computation. Grayscale image has a single channel where as color image has 3 channels. Therefore processing grayscale images reduces the computation by about a 1/3 (Less memory, less training time means lower overall cost).
 2. For this particula application, it seems that grayscale format provided better classification accuracy as demonstrated by [Sermanet and Yan](http://ieeexplore.ieee.org/document/6033589/). I believe that shape feature is more usefull than color feature for traffic signs.
+
 As a second step, histogram equalization is applied to enhance the images in the dataset. This operation specially improves the contrast level of some of the pictures which are very dark or very bright.
 
 The last (mandatory operation) preprocessing is normalization. The images are normalized to get a pixel value in the range [-1, 1]. The formula recommended to use for normalization is (pixel - 128)/128. Normalization is very important for the CNN algorithm to converge quickly and to get better accuracy. This is because when the weights are re-evaluated for optimization, the amount of correction factor to be applied would be uniform. Without normalization, the algorithm has to apply different correction factors to minimize errors because of various values per pixel. Therefore, normalization helps the algorithm to converge quickly.
@@ -94,7 +95,7 @@ The model used for this assignment is LeNet CovNet as described in the course ma
 | Convolution 5x5     	| 1x1 stride, VALID padding, outputs 28x28x6 	|
 | RELU					|		Activation function							|
 | Max pooling	      	| 2x2 stride (ksize of 2), VALID padding,  outputs 14x14x6 				|
-| Convolution 5x5	    | 1x1 stride, VALID padding, outputs 10x10x16      									|
+| Convolution 5x5	    | 1x1 stride, VALID padding, outputs 10x10x16   				|
 | RELU					|		Activation function							|
 | Max pooling	      	| 2x2 stride (ksize of 2), VALID padding,  outputs 5x5x16 				|
 | Fully connected		| Input 400, Output 120        									|
