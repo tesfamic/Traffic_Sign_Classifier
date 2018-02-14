@@ -20,6 +20,7 @@ The goals / steps of this project are the following:
 [image4]: ./examples/gray_images.png "Gray images"
 [image5]: ./examples/normalized_img.png "Normalized images"
 [image6]: ./examples/new_imgs.png "New test images"
+[image7]: ./examples/new_grayscale_img.png "Grayscal test image"
 
 [image6]: ./examples/gray_images1.png "Random Noise"
 [image7]: ./examples/gray_images2.png "Traffic Sign 1"
@@ -133,9 +134,12 @@ The maximum validation accuracy obtained is ~95% which I think is fair for this 
 
 #### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
-Here are five German traffic signs that I found on the web:
+Here are ten German traffic signs that I found on the web:
 
 ![alt text][image6] 
+
+Grayscale and histogram equalized 
+![alt text][image7]
 
  Ten images are considered for testing. In these images, children crossing, right-of-way, pedestrian and road work are somehow similar appearance when they are preprocessed. Therefore, it is expected that the model might confuse one with the other during classification.
 
@@ -175,6 +179,7 @@ The model was able to correctly guess 8 of the 10 traffic signs, which gives an 
  | Speed limit (30km/h) | 62.9% Speed limit (50km/h) <br/> 36.4% Speed limit (30km/h) <br/> 0.61% Roundabout mandatory | Incorrect |
  | General caution  | 100% General caution | Correct |
 
+> There are two incorrectly classified images out of ten test images. Most of the correctly classified images have got 100% certainty. The algorithm misclassified the 'children crossing' and 'speed limit of 30km/h' images with 'right-of-way ' and 'speed limit of 50km/h'. The misclassified images are in fact very similar to the true images. The reason for misclassification is probably because of the preprocessing stage in the pipline have taken away the important features that distinguish the signs. This can be seen from the grayscale images of the test images considered.
 
 ### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
 #### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
